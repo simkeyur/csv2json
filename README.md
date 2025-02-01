@@ -1,7 +1,6 @@
 # CSV to JSON Converter
 
 ![App Screenshot](screenshot-csv2json.png)  
-*(Replace with an actual screenshot of your app)*
 
 A modern, single-page web application for converting CSV data to JSON format. Built with plain JavaScript, HTML, and CSS, this app provides a sleek and user-friendly interface for real-time CSV editing, JSON previewing, and file handling. Hosted on GitHub Pages for easy access.
 
@@ -61,14 +60,5 @@ A modern, single-page web application for converting CSV data to JSON format. Bu
 
 5. **Resize Panels**  
    - Drag the center divider to adjust the size of the CSV editor and JSON preview panel.
-
----
-
-## Hosted on GitHub Pages
-
-This project is hosted on GitHub Pages, making it easy to access and use directly from your browser. No installation or setup is required!
-
-### Live Demo
-👉 [https://your-username.github.io/csv-to-json-converter](https://simkeyur.github.io/csv2json)
 
 ---
