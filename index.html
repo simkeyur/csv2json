@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/theme/dracula.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>csv2json - CSV to JSON Converter</h1>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="csv-editor" class="editor"></div>
+        <div id="json-preview" class="preview"></div>
+    </div>
+    <div class="controls">
+        <button id="convert-btn">Convert to JSON</button>
+        <label for="csv-file-upload" class="upload-label">Upload CSV</label>
+        <input type="file" id="csv-file-upload" accept=".csv">
+        <button id="copy-csv-btn">Copy CSV</button>
+        <button id="copy-json-btn">Copy JSON</button>
+        <button id="download-json-btn">Download JSON</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
