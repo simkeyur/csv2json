@@ -10,19 +10,32 @@ document.addEventListener('DOMContentLoaded', function () {
         mode: 'application/json',
         theme: 'dracula',
         lineNumbers: true,
-        readOnly: true, // Make the JSON preview read-only
+        // Removed readOnly: true to make it editable
     });
 
-    document.getElementById('convert-btn').addEventListener('click', function () {
+    // Convert CSV to JSON
+    document.getElementById('convert-to-json-btn').addEventListener('click', function () {
         const csvData = csvEditor.getValue();
         try {
             const jsonData = csvToJson(csvData);
-            jsonPreview.setValue(JSON.stringify(jsonData, null, 2)); // Prettify JSON with 2-space indentation
+            jsonPreview.setValue(JSON.stringify(jsonData, null, 2));
         } catch (error) {
             jsonPreview.setValue(`Error: ${error.message}`);
         }
     });
 
+    // Convert JSON to CSV
+    document.getElementById('convert-to-csv-btn').addEventListener('click', function () {
+        const jsonData = jsonPreview.getValue();
+        try {
+            const csvData = jsonToCsv(jsonData);
+            csvEditor.setValue(csvData);
+        } catch (error) {
+            csvEditor.setValue(`Error: ${error.message}`);
+        }
+    });
+
+    // Upload CSV File
     document.getElementById('csv-file-upload').addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
@@ -34,14 +47,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Upload JSON File
+    document.getElementById('json-file-upload').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                jsonPreview.setValue(e.target.result);
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    // Copy CSV
     document.getElementById('copy-csv-btn').addEventListener('click', function () {
         navigator.clipboard.writeText(csvEditor.getValue());
     });
 
+    // Copy JSON
     document.getElementById('copy-json-btn').addEventListener('click', function () {
         navigator.clipboard.writeText(jsonPreview.getValue());
     });
 
+    // Download JSON
     document.getElementById('download-json-btn').addEventListener('click', function () {
         const blob = new Blob([jsonPreview.getValue()], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -52,12 +80,25 @@ document.addEventListener('DOMContentLoaded', function () {
         URL.revokeObjectURL(url);
     });
 
+    // Download CSV
+    document.getElementById('download-csv-btn').addEventListener('click', function () {
+        const blob = new Blob([csvEditor.getValue()], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'output.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    // Resizable Panels
     Split(['#csv-editor', '#json-preview'], {
         sizes: [50, 50],
         minSize: 200,
     });
 });
 
+// Convert CSV to JSON
 function csvToJson(csv) {
     const lines = csv.split('\n');
     const result = [];
@@ -75,4 +116,30 @@ function csvToJson(csv) {
     }
 
     return result;
+}
+
+// Convert JSON to CSV
+function jsonToCsv(json) {
+    try {
+        const data = JSON.parse(json);
+        if (!Array.isArray(data)) {
+            throw new Error('JSON must be an array of objects.');
+        }
+
+        const headers = Object.keys(data[0]);
+        const csvRows = [];
+
+        // Add headers
+        csvRows.push(headers.join(','));
+
+        // Add rows
+        data.forEach((row) => {
+            const values = headers.map((header) => row[header]);
+            csvRows.push(values.join(','));
+        });
+
+        return csvRows.join('\n');
+    } catch (error) {
+        throw new Error('Invalid JSON format: ' + error.message);
+    }
 }

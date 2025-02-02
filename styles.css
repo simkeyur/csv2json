@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #1e1e1e;
     color: #fff;
     display: flex;
@@ -12,15 +12,15 @@ body {
 /* Slimmer Navbar */
 .navbar {
     background-color: #000;
-    padding: 8px 20px; /* Reduced padding */
+    padding: 8px 20px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .navbar h1 {
     margin: 0;
-    font-size: 1.5rem; /* Smaller font size */
-    font-weight: 600; /* Semi-bold */
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 /* Container for Editor and Preview */
@@ -36,67 +36,67 @@ body {
     overflow: auto;
 }
 
-/* Uniform Button Styling */
-.controls {
-    background-color: #000;
-    padding: 10px;
-    text-align: center;
-    flex-shrink: 0;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-}
 
-button {
-    background-color: #333; /* Darker background */
+/* Button Styling */
+button, .upload-label {
+    background-color: #333;
     color: #fff;
     border: none;
     padding: 10px 20px;
-    margin: 5px;
     cursor: pointer;
-    border-radius: 4px; /* Rounded corners */
-    font-size: 0.9rem; /* Smaller font size */
-    font-weight: 500; /* Medium weight */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-}
-
-button:hover {
-    background-color: #555; /* Lighter on hover */
-    transform: translateY(-1px); /* Slight lift effect */
-}
-
-button:active {
-    transform: translateY(0); /* Reset lift effect on click */
-}
-
-/* File Upload Input Styling */
-#csv-file-upload {
-    display: none; /* Hide the default file input */
-}
-
-.upload-label {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
     border-radius: 4px;
-    cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.upload-label:hover {
+button:hover, .upload-label:hover {
     background-color: #555;
     transform: translateY(-1px);
 }
 
-.upload-label:active {
+button:active, .upload-label:active {
     transform: translateY(0);
 }
+
+/* Controls Layout */
+.controls {
+    background-color: #000;
+    padding: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between; /* Split left/right groups */
+    gap: 10px; /* Spacing between buttons */
+  }
+  
+  /* Left Pane Buttons */
+  .controls > :nth-child(-n+5) { /* Targets first 5 elements (Upload CSV + CSV buttons) */
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Center under left pane */
+    flex: 1; /* Take 50% width */
+  }
+  
+  /* Right Pane Buttons */
+  .controls > :nth-child(n+6) { /* Targets elements 6-10 (Upload JSON + JSON buttons) */
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Center under right pane */
+    flex: 1; /* Take 50% width */
+  }
+  
+  /* Hide file inputs (already styled via labels) */
+  #csv-file-upload,
+  #json-file-upload {
+    display: none;
+  }
 
 /* CodeMirror Editor Styling */
 .CodeMirror {
     height: 100%;
-    font-size: 14px; /* Smaller font size for code */
-    line-height: 1.5; /* Better line spacing */
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 /* JSON Preview Styling */
@@ -105,6 +105,6 @@ button:active {
     background-color: #2d2d2d;
     color: #fff;
     white-space: pre-wrap;
-    font-size: 14px; /* Smaller font size for JSON */
-    line-height: 1.5; /* Better line spacing */
+    font-size: 14px;
+    line-height: 1.5;
 }

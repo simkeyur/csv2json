@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV to JSON Converter</title>
+    <title>CSV ⇄ JSON Converter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/theme/dracula.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <h1>csv2json - CSV to JSON Converter</h1>
+            <h1>CSV ⇄ JSON Converter</h1>
         </nav>
     </header>
     <div class="container">
@@ -20,13 +20,20 @@
         <div id="json-preview" class="preview"></div>
     </div>
     <div class="controls">
-        <button id="convert-btn">Convert to JSON</button>
+        <!-- Left Pane Group -->
         <label for="csv-file-upload" class="upload-label">Upload CSV</label>
         <input type="file" id="csv-file-upload" accept=".csv">
+        <button id="convert-to-json-btn">Convert to JSON</button>
         <button id="copy-csv-btn">Copy CSV</button>
+        <button id="download-csv-btn">Download CSV</button>
+      
+        <!-- Right Pane Group -->
+        <label for="json-file-upload" class="upload-label">Upload JSON</label>
+        <input type="file" id="json-file-upload" accept=".json">
+        <button id="convert-to-csv-btn">Convert to CSV</button>
         <button id="copy-json-btn">Copy JSON</button>
         <button id="download-json-btn">Download JSON</button>
-    </div>
+      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/css/css.min.js"></script>
